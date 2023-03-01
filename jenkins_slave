@@ -1,1 +1,14 @@
-# your Home work
+pipeline {
+    agent any
+    parameters {
+        string(name: 'NAME', defaultValue: 'Louisnoiz', description: 'Enter your name')
+        choice(name: 'AGES', defaultValue: '50', description: 'Enter your ages')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                sh "python myscript.py ${params.NAME} of ${params.AGES}"
+            }
+        }
+    }
+}
