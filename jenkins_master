@@ -14,9 +14,9 @@ pipeline {
                 script{
                     def data = readFile(file: 'data.txt')
                     def dataline = data.readlines()
+                    echo 'Start Trigger to send name and age to slave'
+                    build job: 'jenkins_slave', parameters: [string(name: 'NAME', value: dataline.get(0)), string(name: 'Ages', value: dataline.get(1))]
                 }
-                echo 'Start Trigger to send name and age to slave'
-                build job: 'slave', parameters: [string(name: 'NAME', value: 'Alice'), string(name: 'Ages', value: '21')]
             }
         }
     }
